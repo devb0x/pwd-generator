@@ -1,8 +1,13 @@
 const lengthInput = document.querySelector('#length')
 const lengthNumberSpan = document.querySelector('#lengthNumber')
 const pwdOutput = document.getElementById('output')
+const lettersCheckbox = document.getElementById('letters')
+const digitsCheckbox = document.getElementById('digits')
+const symbolsCheckbox = document.getElementById('symbols')
 
-const charactersList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const lettersList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const digitsList = "0123456789"
+const symbolsList = "?,;.:/\\”=+%`£*$-_)!§('&@"
 
 function handleInputChange(e) {
 	let target = e.target
@@ -17,15 +22,50 @@ function handleInputChange(e) {
 
 	lengthNumberSpan.innerText = value
 
-	pwdGeneration(value)
+	pwdGeneration(
+		lengthNumberSpan.innerText,
+		lettersCheckbox.checked,
+		digitsCheckbox.checked,
+		symbolsCheckbox.checked
+	)
 }
 
-function pwdGeneration(value) {
-	let result = ''
-	let chList = charactersList.split('')
+/**
+ * This function is used to display the correct value and css style
+ */
+function firstRender() {
+	lengthNumberSpan.innerText = lengthInput.value
+	lengthInput.style.backgroundSize = (lengthInput.value - lengthInput.min) * 100 / (lengthInput.max - lengthInput.min) + '% 100%'
+}
 
+/**
+ * Generate the password depending on the checkbox,
+ * then return the result to the display function
+ * @param value
+ * @param letters
+ * @param digits
+ * @param symbols
+ */
+function pwdGeneration(value, letters, digits, symbols) {
+	let result = ''
+	let letterList = lettersList.split('')
+	let digitList = digitsList.split('')
+	let symbolList = symbolsList.split('')
+	let list = lettersList.split('')
+
+	if (digits) {
+		list = list + digitList
+	}
+	if (symbols) {
+		list = list + symbolList
+	}
+	if (letters) {
+		list = list + letterList
+	}
+
+	let listArray = list.split(',')
 	for (let i = 0; i < value; i++) {
-		result = result + chList[Math.floor(Math.random() * chList.length)]
+		result = result + listArray[Math.floor(Math.random() * listArray.length)]
 	}
 
 	return displayPwd(result)
@@ -35,6 +75,26 @@ function displayPwd(result) {
 	pwdOutput.innerText = result
 }
 
+firstRender()
+pwdGeneration(
+	lengthInput.value,
+	lettersCheckbox.checked,
+	digitsCheckbox.checked,
+	symbolsCheckbox.checked
+)
+
 lengthInput.addEventListener('input', (e) => {
+	handleInputChange(e)
+})
+
+lettersCheckbox.addEventListener('click', (e) => {
+	handleInputChange(e)
+})
+
+digitsCheckbox.addEventListener('click', (e) => {
+	handleInputChange(e)
+})
+
+symbolsCheckbox.addEventListener('click', (e) => {
 	handleInputChange(e)
 })
