@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Password Generator</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" defer></script>
+</head>
+<body>
+
+	<section class="pwd-section">
+		<header>
+			<h1 class="title">Password Generator</h1>
+		</header>
+		<div class="pwd-output">
+			<output id="output">outputBal!s3</output>
+		</div>
+		
+		<div class="length" id="why">
+			<input
+				class="length-input-range"
+				type="range"
+				id="length"
+				name="length"
+				min="3"
+				max="40"
+				value="12"
+			/>
+			<label for="length">Length (<span id="lengthNumber">12</span>)</label>
+		</div>
+		
+		<div class="options">
+			<div class="option-wrapper">
+				<input type="checkbox" name="letters" id="letters" class="checkbox" checked>
+				<label for="letters">Letters</label>
+			</div>
+			<div class="option-wrapper">
+				<input type="checkbox" name="digits" id="digits" class="checkbox">
+				<label for="digits">Digits</label>
+			</div>
+			<div class="option-wrapper">
+				<input type="checkbox" name="symbols" id="symbols" class="checkbox">
+				<label for="symbols">Symbols</label>
+			</div>
+		</div>
+		
+		<footer>
+			devb0x
+		</footer>
+	</section>
+
+</body>
+</html>

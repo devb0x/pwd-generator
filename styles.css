@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+	--darkGrey: hsl(0, 0%, 25%);
+}
+
+* {
+	font-family: 'Share Tech Mono', sans-serif;
+}
+
+.pwd-section {
+	outline: 1px solid black;
+	max-width: 355px;
+	gap: 60px;
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+.pwd-output {
+	background-color: var(--darkGrey);
+	color: white;
+	border-radius: 6px;
+	min-width: 245px;
+	max-width: 90%;
+	height: 36px;
+	font-size: 14px;
+	margin: auto;
+	display: flex;
+}
+
+.pwd-output > output {
+	margin: auto;
+}
+
+.length {
+	display: flex;
+	flex-direction: column;
+	min-width: 245px;
+	max-width: 90%;
+	margin: auto;
+	gap: 16px;
+}
+
+.length-input-range {
+	-webkit-appearance: none;
+	background-color: lightgrey;
+	border: 0;
+	border-radius: 6px;
+	height: 8px;
+	accent-color: var(--darkGrey);
+	background-image: linear-gradient(var(--darkGrey),  var(--darkGrey));
+	background-size: 25% 100%;
+	background-repeat: no-repeat;
+}
+
+/* cursor for input range */
+.length-input-range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background: hsl(0, 0%, 25%);
+	cursor: ew-resize;
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	min-width: 245px;
+	max-width: 90%;
+	margin: auto;
+}
+
+.option-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+}
+
+.checkbox {
+	-webkit-appearance: none;
+	height: 24px;
+	width: 24px;
+	border: 1px solid var(--darkGrey);
+	accent-color: var(--darkGrey);
+	border-radius: 6px;
+}
+
+.checkbox:checked {
+	-webkit-appearance: checkbox;
+}
+
+
+
+
+
