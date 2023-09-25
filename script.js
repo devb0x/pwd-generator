@@ -10,6 +10,14 @@ const digitsList = "0123456789"
 const symbolsList = "?,;.:/\\”=+%`£*$-_)!§('&@"
 
 function handleInputChange(e) {
+	let numberOfChecked = document.querySelectorAll('input:checked')
+	if (numberOfChecked.length === 1) {
+		numberOfChecked[0].disabled = true
+	}
+	if (numberOfChecked.length > 1) {
+		numberOfChecked.forEach(el => el.disabled = false)
+	}
+
 	let target = e.target
 	if (e.target.type !== 'range') {
 		target = document.getElementById('length')
@@ -51,7 +59,7 @@ function pwdGeneration(value, letters, digits, symbols) {
 	let letterList = lettersList.split('')
 	let digitList = digitsList.split('')
 	let symbolList = symbolsList.split('')
-	let list = lettersList.split('')
+	let list = []
 
 	if (digits) {
 		list = list + digitList

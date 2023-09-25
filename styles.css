@@ -73,7 +73,6 @@
 .options {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
 	min-width: 245px;
 	max-width: 90%;
 	margin: auto;
@@ -82,23 +81,26 @@
 .option-wrapper {
 	display: flex;
 	align-items: center;
-	gap: 16px;
-
+	margin-bottom: 16px;
 }
 
-.checkbox {
+.option-wrapper > .checkbox {
 	-webkit-appearance: none;
 	height: 24px;
 	width: 24px;
 	border: 1px solid var(--darkGrey);
 	accent-color: var(--darkGrey);
 	border-radius: 6px;
+	margin: 0;
+}
+
+.option-wrapper > label {
+	padding-left: 1rem;
 }
 
 .checkbox:checked {
 	-webkit-appearance: checkbox;
 }
-
 
 
 
