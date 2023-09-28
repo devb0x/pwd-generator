@@ -1,6 +1,8 @@
 const lengthInput = document.querySelector('#length')
 const lengthNumberSpan = document.querySelector('#lengthNumber')
 const pwdOutput = document.getElementById('output')
+const copyButton = document.getElementById('copy')
+const refreshIcon = document.getElementById('refresh')
 const lettersCheckbox = document.getElementById('letters')
 const digitsCheckbox = document.getElementById('digits')
 const symbolsCheckbox = document.getElementById('symbols')
@@ -8,6 +10,7 @@ const symbolsCheckbox = document.getElementById('symbols')
 const lettersList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const digitsList = "0123456789"
 const symbolsList = "?,;.:/\\”=+%`£*$-_)!§('&@"
+let isPwdCopied = false
 
 function handleInputChange(e) {
 	let numberOfChecked = document.querySelectorAll('input:checked')
@@ -55,6 +58,8 @@ function firstRender() {
  * @param symbols
  */
 function pwdGeneration(value, letters, digits, symbols) {
+	isPwdCopied = false
+
 	let result = ''
 	let letterList = lettersList.split('')
 	let digitList = digitsList.split('')
@@ -75,7 +80,7 @@ function pwdGeneration(value, letters, digits, symbols) {
 	for (let i = 0; i < value; i++) {
 		result = result + listArray[Math.floor(Math.random() * listArray.length)]
 	}
-
+	updateCopyBtn(isPwdCopied)
 	return displayPwd(result)
 }
 
@@ -83,16 +88,34 @@ function displayPwd(result) {
 	pwdOutput.innerText = result
 }
 
-firstRender()
-pwdGeneration(
-	lengthInput.value,
-	lettersCheckbox.checked,
-	digitsCheckbox.checked,
-	symbolsCheckbox.checked
-)
+function updateCopyBtn(isPwdCopied) {
+	if (isPwdCopied) {
+		copyButton.innerText = 'Copied!'
+	} else {
+		copyButton.innerText = 'Copy password'
+	}
+}
 
 lengthInput.addEventListener('input', (e) => {
+	isPwdCopied = false
+	updateCopyBtn(isPwdCopied)
 	handleInputChange(e)
+})
+
+copyButton.addEventListener('click', (e) => {
+	isPwdCopied = true
+	updateCopyBtn(isPwdCopied)
+	return navigator.clipboard.writeText(pwdOutput.innerText)
+})
+
+refreshIcon.addEventListener('click', (e) => {
+	isPwdCopied = false
+	pwdGeneration(
+		lengthInput.value,
+		lettersCheckbox.checked,
+		digitsCheckbox.checked,
+		symbolsCheckbox.checked
+	)
 })
 
 lettersCheckbox.addEventListener('click', (e) => {
@@ -106,3 +129,11 @@ digitsCheckbox.addEventListener('click', (e) => {
 symbolsCheckbox.addEventListener('click', (e) => {
 	handleInputChange(e)
 })
+
+firstRender()
+pwdGeneration(
+	lengthInput.value,
+	lettersCheckbox.checked,
+	digitsCheckbox.checked,
+	symbolsCheckbox.checked
+)

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Password Generator</title>
 	<link rel="stylesheet" href="styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="script.js" defer></script>
 </head>
 <body>
@@ -12,11 +13,21 @@
 		<header>
 			<h1 class="title">Password Generator</h1>
 		</header>
-		<div class="pwd-output">
-			<output id="output">outputBal!s3</output>
+		
+		<div class="pwd-display">
+	
+			<div class="pwd-output">
+				<output id="output">outputBal!s3</output>
+			</div>
+			<div class="pwd-opt">
+				<button class="pwd-copy" id="copy">Copy password</button>
+				<div class="refresh-icon" id="refresh">
+					<img src="refresh.svg" alt="refresh" >
+				</div>
+			</div>
 		</div>
 		
-		<div class="length" id="why">
+		<div class="length">
 			<input
 				class="length-input-range"
 				type="range"
@@ -44,10 +55,13 @@
 			</div>
 		</div>
 		
-		<footer>
-			devb0x
-		</footer>
 	</section>
+	
+	<footer>
+		<div class="footer-text">
+			devb0x
+		</div>
+	</footer>
 
 </body>
 </html>
